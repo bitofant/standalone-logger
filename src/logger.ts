@@ -61,7 +61,7 @@ function Logger(loggerID: string|NodeJS.Module|{toString:()=>string}, defaultCol
 		name = loggerID + '';
 	}
 	if (name.length > maxNameLength) maxNameLength = name.length;
-	var defaultCol = defaultColor || 'white';
+	var defaultCol = defaultColor || settings.defaultColor;
 	var defaultC = colors[defaultCol];
 
 	function Log(msg: string|number|Error|object, color: 'black'|'red'|'green'|'yellow'|'blue'|'magenta'|'cyan'|'white' = null) {

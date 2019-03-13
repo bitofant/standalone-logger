@@ -66,7 +66,7 @@ function Logger(loggerID, defaultColor = null) {
     }
     if (name.length > maxNameLength)
         maxNameLength = name.length;
-    var defaultCol = defaultColor || 'white';
+    var defaultCol = defaultColor || logger_settings_1.default.defaultColor;
     var defaultC = colors[defaultCol];
     function Log(msg, color = null) {
         var d = new Date();
