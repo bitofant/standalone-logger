@@ -21,3 +21,5 @@ app.listen(3000);
 
 LoggerSettings.logfile = __dirname + '/app.log';
 ```
+
+![screenshot](screenshot.png)
