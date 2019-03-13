@@ -1,4 +1,4 @@
-import { LogEntry } from "./log";
+import log, { LogEntry } from "./log";
 import LogFile from './file-persistance';
 
 class LoggerSettings {
@@ -21,6 +21,12 @@ class LoggerSettings {
 				setTimeout(() => this.logfileWriter(), this.logfileWriteInterval);
 			}
 			this._logfile = new LogFile(file);
+			this._logfile.load(entries => {
+				if (entries.length > this._linesInMemory) {
+					entries.splice(0, entries.length - this._linesInMemory);
+				}
+				log.unshift(...entries);
+			});
 		}
 	}
 

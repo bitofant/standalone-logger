@@ -139,5 +139,5 @@ function loggerExpressEndpoint(req, res, next) {
 	}
 };
 
-export { Logger, loggerExpressEndpoint, colors as LoggingColor };
+export { Logger, loggerExpressEndpoint, colors as LoggingColor, settings as LoggerSettings };
 export default Logger;
