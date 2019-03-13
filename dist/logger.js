@@ -6,9 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const log_1 = require("./log");
 const logger_settings_1 = __importDefault(require("./logger-settings"));
 exports.LoggerSettings = logger_settings_1.default;
-const MAX_LOG_LENGTH = 50000;
-const LOG_CHOP_SIZE = 1000;
-const logfile = __dirname + '/logger.log';
 const colors = {
     black: '\x1b[30m',
     red: '\x1b[31m',

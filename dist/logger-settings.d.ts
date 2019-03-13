@@ -5,7 +5,10 @@ declare class LoggerSettings {
     useSystemStringification: boolean;
     private _linesInMemory;
     private _logfile;
+    private _defaultColor;
+    private defaultColorIndex;
     private readonly pendingLogfileEntries;
+    defaultColor: 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white';
     logfile: string;
     linesInMemory: number;
     appendToLogfile(entry: LogEntry): void;

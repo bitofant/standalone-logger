@@ -5,6 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const log_1 = __importDefault(require("./log"));
 const file_persistance_1 = __importDefault(require("./file-persistance"));
+const defaultColorOrder = [
+    'white',
+    'cyan',
+    'red',
+    'yellow',
+    'magenta',
+    'green',
+    'blue'
+];
 class LoggerSettings {
     constructor() {
         this.chopSize = 1000;
@@ -12,7 +21,18 @@ class LoggerSettings {
         this.useSystemStringification = false;
         this._linesInMemory = 50000;
         this._logfile = null;
+        this._defaultColor = null;
+        this.defaultColorIndex = 0;
         this.pendingLogfileEntries = [];
+    }
+    get defaultColor() {
+        var c = defaultColorOrder[this.defaultColorIndex++];
+        if (this.defaultColorIndex >= defaultColorOrder.length)
+            this.defaultColorIndex = 0;
+        return c;
+    }
+    set defaultColor(color) {
+        this._defaultColor = color;
     }
     get logfile() {
         return this._logfile.filename;
