@@ -1,14 +1,36 @@
 import log, { LogEntry } from "./log";
 import LogFile from './file-persistance';
 
+const defaultColorOrder: Array<'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white'> = [
+	'white',
+	'cyan',
+	'red',
+	'yellow',
+	'magenta',
+	'green',
+	'blue'
+];
+
 class LoggerSettings {
 	public chopSize : number = 1000;
 	public logfileWriteInterval : number = 5000;
 	public useSystemStringification : boolean = false;
 	private _linesInMemory : number = 50000;
 	private _logfile : LogFile = null;
+	private _defaultColor : 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white' = null;
+	private defaultColorIndex : number = 0;
 
 	private readonly pendingLogfileEntries : LogEntry[] = [];
+
+
+	get defaultColor () : 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white' {
+		var c = defaultColorOrder[this.defaultColorIndex++];
+		if (this.defaultColorIndex >= defaultColorOrder.length) this.defaultColorIndex = 0;
+		return c;
+	}
+	set defaultColor (color : 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white') {
+		this._defaultColor = color;
+	}
 
 	get logfile () : string {
 		return this._logfile.filename;

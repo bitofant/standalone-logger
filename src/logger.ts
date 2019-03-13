@@ -1,9 +1,6 @@
 import fs = require('fs');
 import { log, LogEntry } from "./log";
 import settings from "./logger-settings";
-const MAX_LOG_LENGTH = 50000;
-const LOG_CHOP_SIZE = 1000;
-const logfile = __dirname + '/logger.log';
 
 
 const colors = {
