@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "./dist/",
+    "lib": [
+      "es7"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/technicalindicators/declarations"
+    ],
+    "types": [
+      "node",
+      "express"
+    ]
+  },
+  "files": [
+    "src/logger.ts"
+  ]
+}

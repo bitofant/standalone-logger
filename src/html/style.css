@@ -1,0 +1,122 @@
+body {
+	background: #000;
+	color: #fff;
+	font-size: 14px;
+}
+
+#wrapper {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+#headline {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 23px;
+	background: #06c;
+	color: #fff;
+	z-index: 9999;
+}
+
+.fadingrow {
+	opacity: 0;
+	transition: opacity .5s;
+	position: absolute;
+	width: 100%;
+	height: 1.5em;
+	left: 0px;
+	border-top: 1px solid #333;
+}
+
+.even-row {
+	background: #000;
+}
+
+.odd-row {
+	background: #222;
+}
+
+.col {
+	position: absolute;
+	display: inline-block;
+	font-family: monospace;
+	top: 1px;
+}
+
+.head-col {
+	position: absolute;
+	display: inline-block;
+	font-family: Helvetica, 'Segoe UI', Verdana, sans-serif;
+	top: 3px;
+	font-weight: bold;
+}
+
+.col-1 {
+	left: 5px;
+	width: 100px;
+}
+
+.col-2 {
+	left: 116px;
+	width: 105px;
+}
+
+.col-3 {
+	left: 245px;
+	width: 100px;
+	height: 1.5em;
+	overflow: hidden;
+}
+
+.col-4 {
+	left: 370px;
+	width: calc(100% - 380px);
+	white-space: pre;
+}
+
+.color-black {
+	color: #555;
+}
+
+.color-red {
+	color: #d34;
+}
+
+.color-green {
+	color: #1c5;
+}
+
+.color-yellow {
+	color: #dd3;
+}
+
+.color-blue {
+	color: #39f;
+}
+
+.color-magenta {
+	color: #d39;
+}
+
+.color-cyan {
+	color: #3dd;
+}
+
+.color-white {
+	color: #fff;
+}
+
+.color-dim {
+	opacity: .6
+}
+
+.color-reset {
+	color: #fff;
+	opacity: 1;
+}
