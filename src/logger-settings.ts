@@ -60,6 +60,7 @@ class LoggerSettings {
 
 	public appendToLogfile (entry : LogEntry) {
 		if (this._logfile === null) return;
+		this.pendingLogfileEntries.push(entry);
 	}
 
 	private logfileWriter () {
