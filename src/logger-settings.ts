@@ -4,7 +4,6 @@ import LogFile from './file-persistance';
 const defaultColorOrder: Array<'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white'> = [
 	'white',
 	'cyan',
-	'red',
 	'yellow',
 	'magenta',
 	'green',

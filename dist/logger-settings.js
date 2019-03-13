@@ -8,7 +8,6 @@ const file_persistance_1 = __importDefault(require("./file-persistance"));
 const defaultColorOrder = [
     'white',
     'cyan',
-    'red',
     'yellow',
     'magenta',
     'green',
