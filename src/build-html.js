@@ -47,18 +47,18 @@ function wrapStyle (style) {
 		style = style.split('  ').join(' ');
 		if (origLength === style.length) break;
 	}
-	style = style
-			.split(' {').join('{')
-			.split('{ ').join('{')
-			.split(' }').join('}')
-			.split('} ').join('}')
-			.split(': ').join(':')
-			.split(' :').join(':')
-			.split('; ').join(';')
-			.split(' ;').join(';')
-			.split(', ').join(',')
-			.split(' ,').join(',')
-			.split(';}').join('}');
+	// style = style
+	// 		.split(' {').join('{')
+	// 		.split('{ ').join('{')
+	// 		.split(' }').join('}')
+	// 		.split('} ').join('}')
+	// 		.split(': ').join(':')
+	// 		.split(' :').join(':')
+	// 		.split('; ').join(';')
+	// 		.split(' ;').join(';')
+	// 		.split(', ').join(',')
+	// 		.split(' ,').join(',')
+	// 		.split(';}').join('}');
 	return '<style>\n' + style + '\n</style>';
 }
 
@@ -68,21 +68,21 @@ function wrapStyle (style) {
  * @returns {string}
  */
 function wrapJs(code) {
-	code = code.replace(/\\*.*?\\*/, '');
-	code = code.split('\n').map(line => line.startsWith('//') ? '' : line.split('//')[0]).join('\n');
-	code = code.split(/\s/).join(' ');
-	for (var i = 0; i < 20; i++) {
-		var origLength = code.length;
-		code = code.split('  ').join(' ');
-		if (origLength === code.length) break;
-	}
-	for (var i = 0; i < 20; i++) {
-		var cl = code.length;
-		code = code.replace(/\s?[\{\}\(\)\[\]=\-\+\*<>,;:!\?&|]\s?/g, value => value.trim());
-		if (cl === code.length) break;
-	}
-	code = code.split(';}').join('}');
-	if (code.endsWith(';')) code = code.substr(0, code.length - 1);
+	// code = code.replace(/\\*.*?\\*/, '');
+	// code = code.split('\n').map(line => line.startsWith('//') ? '' : line.split('//')[0]).join('\n');
+	// code = code.split(/\s/).join(' ');
+	// for (var i = 0; i < 20; i++) {
+	// 	var origLength = code.length;
+	// 	code = code.split('  ').join(' ');
+	// 	if (origLength === code.length) break;
+	// }
+	// for (var i = 0; i < 20; i++) {
+	// 	var cl = code.length;
+	// 	code = code.replace(/\s?[\{\}\(\)\[\]=\-\+\*<>,;:!\?&|]\s?/g, value => value.trim());
+	// 	if (cl === code.length) break;
+	// }
+	// code = code.split(';}').join('}');
+	// if (code.endsWith(';')) code = code.substr(0, code.length - 1);
 	return '<script type="application/javascript">\n' + code + '\n</script>';
 }
 
