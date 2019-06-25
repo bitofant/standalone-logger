@@ -76,7 +76,7 @@ function Logger(loggerID: string|NodeJS.Module|{toString:()=>string}, defaultCol
 			strMsg = msg.name + ': ' + msg.message + (msg.stack ? ('\n' + msg.stack) : '');
 		} else {
 			strMsg = String(msg);
-			if (typeof (strMsg) !== 'string' || strMsg === '[object Object]') {
+			if (typeof (strMsg) !== 'string' || strMsg.startsWith ('[object ')) {
 				strMsg = JSON.stringify(msg);
 			}
 		}
