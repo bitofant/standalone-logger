@@ -75,11 +75,8 @@ function Logger(loggerID: string|NodeJS.Module|{toString:()=>string}, defaultCol
 		} else if (isError(msg)) {
 			strMsg = msg.name + ': ' + msg.message + (msg.stack ? ('\n' + msg.stack) : '');
 		} else {
-			let tmptstr;
-			if (msg.toString) tmptstr = msg.toString();
-			if (typeof(tmptstr) === 'string') {
-				strMsg = tmptstr;
-			} else {
+			strMsg = String(msg);
+			if (typeof (strMsg) !== 'string' || strMsg === '[object Object]') {
 				strMsg = JSON.stringify(msg);
 			}
 		}
