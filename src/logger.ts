@@ -70,7 +70,7 @@ function Logger (loggerID: string|NodeJS.Module|{toString: ()=>string}, defaultC
 		if (!color) color = defaultCol;
 		logEntry (name, d.getTime (), strMsg, color);
 		if (!settings.useColorsInProduction && settings.isProductionMode) {
-			console.log (msg);
+			console.log (name, msg);
 		} else {
 			var cr = c === '' ? '' : colors.reset;
 			var strMsg : string;
