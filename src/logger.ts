@@ -61,38 +61,45 @@ function Logger (loggerID: string|NodeJS.Module|{toString: ()=>string}, defaultC
 		name = loggerID + '';
 	}
 	if (name.length > maxNameLength) maxNameLength = name.length;
-	var defaultCol = defaultColor || settings.defaultColor;
-	var defaultC = colors[defaultCol];
+	const defaultCol = defaultColor || settings.defaultColor;
+	const defaultC = colors[defaultCol];
+	const bracedName = `[${name}]`;
 
-	function Log (msg: string|number|Error|object, color: 'black'|'red'|'green'|'yellow'|'blue'|'magenta'|'cyan'|'white' = null) {
-		var d = new Date ();
-		var c = color ? colors[color] : defaultC;
-		if (!color) color = defaultCol;
-		logEntry (name, d.getTime (), strMsg, color);
-		if (!settings.useColorsInProduction && settings.isProductionMode) {
-			console.log (name, msg);
+	function LogRegular (msg: string|number|Error|object, color: 'black'|'red'|'green'|'yellow'|'blue'|'magenta'|'cyan'|'white' = null) {
+		const d = new Date ();
+		const c = color ? colors[color] : defaultC;
+		const strMsg = stringifyMessage (msg);
+		logEntry (name, d.getTime (), strMsg, color || defaultCol);
+		const cr = c === '' ? '' : colors.reset;
+		if (settings.useSystemStringification) {
+			console.log (c + timestamp (d) + cr + c + '|' + fixedLengthString (name, maxNameLength, '.') + cr + c + ': ', msg, cr);
 		} else {
-			var cr = c === '' ? '' : colors.reset;
-			var strMsg : string;
-			if (typeof (msg) === 'string') {
-				strMsg = msg;
-			} else if (isError (msg)) {
-				strMsg = msg.name + ': ' + msg.message + (msg.stack ? ('\n' + msg.stack) : '');
-			} else {
-				strMsg = String (msg);
-				if (typeof (strMsg) !== 'string' || strMsg.startsWith ('[object ')) {
-					strMsg = JSON.stringify (msg);
-				}
-			}
-			if (settings.useSystemStringification) {
-				console.log (c + timestamp (d) + cr + c + '|' + fixedLengthString (name, maxNameLength, '.') + cr + c + ': ', msg, cr);
-			} else {
-				console.log (c + timestamp (d) + cr + c + '|' + fixedLengthString (name, maxNameLength, '.') + cr + c + ': ' + strMsg + cr);
-			}
+			console.log (c + timestamp (d) + cr + c + '|' + fixedLengthString (name, maxNameLength, '.') + cr + c + ': ' + strMsg + cr);
 		}
 	}
-	return Log;
+	function LogProduction (msg: string|number|Error|object, color: 'black'|'red'|'green'|'yellow'|'blue'|'magenta'|'cyan'|'white' = null) {
+		const strMsg = stringifyMessage (msg);
+		logEntry (name, Date.now (), strMsg, color || defaultCol);
+		console.log (bracedName, msg);
+	}
+	return (settings.isProductionMode && !settings.useColorsInProduction) ? LogProduction : LogRegular;
 }
+
+
+function stringifyMessage (msg: string | number | object | Error) {
+	if (typeof (msg) === 'string') {
+		return msg;
+	}
+	if (isError(msg)) {
+		return msg.name + ': ' + msg.message + (msg.stack ? ('\n' + msg.stack) : '');
+	}
+	let strMsg = String(msg);
+	if (typeof (strMsg) !== 'string' || strMsg.startsWith('[object ')) {
+		strMsg = JSON.stringify(msg);
+	}
+	return strMsg;
+}
+
 
 function timestamp (d) {
 	return digits (d.getHours (), 2) + ':' +
