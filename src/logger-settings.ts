@@ -14,6 +14,8 @@ class LoggerSettings {
 	public chopSize : number = 1000;
 	public logfileWriteInterval : number = 5000;
 	public useSystemStringification : boolean = false;
+	public useColorsInProduction : boolean = false;
+	public readonly isProductionMode : boolean = process.env.NODE_ENV === 'production';
 	private _linesInMemory : number = 50000;
 	private _logfile : LogFile = null;
 	private _defaultColor : 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white' = null;
