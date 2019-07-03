@@ -118,8 +118,6 @@ function fixedLengthString (str, len, fillChar) {
 
 
 
-
-
 function loggerExpressEndpoint (req, res, next) {
 	if (req.url === '/') {
 		res.sendFile (__dirname + '/log.html');
