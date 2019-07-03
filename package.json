@@ -3,6 +3,9 @@
   "version": "1.0.11",
   "description": "tiny logger for development logging",
   "main": "dist/logger.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ts": "tsc",
