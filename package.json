@@ -1,6 +1,6 @@
 {
   "name": "standalone-logger",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "tiny logger for development logging",
   "main": "dist/logger.js",
   "files": [
